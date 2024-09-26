@@ -287,11 +287,22 @@ const Dashboard = () => {
           }}
         >
           {selectedZone && (
+            <div className="text-3xl font-bold text-left mb-6">
+              {selectedZone.zone_name
+                .replace(/_/g, " ")
+                .replace(
+                  /\w\S*/g,
+                  (txt) =>
+                    txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+                )}{""}
+            </div>
+          )}
+          {selectedZone && (
             <div className="flex justify-between items-start gap-6">
               {selectedZone.booth.map((booth, index) => (
                 <div
                   key={index}
-                  className="flex-1 border border-gray-300 p-6 sm:p-8 rounded-2xl" // Added padding and rounded border
+                  className="flex-1 border border-blue-500 p-6 sm:p-8 rounded-2xl" // Added padding and rounded border
                   style={{ opacity: 0.9 }}
                 >
                   <h2
@@ -317,7 +328,7 @@ const Dashboard = () => {
                         {(booth.time / 60).toFixed(2)}
                       </div>
                       <div className="text-sm font-bold">
-                        Avg. Dwell-Time (Min)
+                        Avg. Spending Time (Min)
                       </div>
 
                       <div className="text-xs text-gray-500">
