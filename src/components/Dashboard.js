@@ -146,7 +146,7 @@ const Dashboard = () => {
           type: "bar", // Specify the type as 'bar' for this dataset
           label: "Visitors Count (Bar)",
           data,
-          backgroundColor: "rgba(42, 49, 117, 0.7)",
+          backgroundColor: "rgba(42, 49, 117, 1)",
           // borderColor: "rgba(33, 76, 129, 1)",
           borderWidth: 1,
           barThickness: 50, // Set a fixed bar thickness
@@ -171,10 +171,10 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-100 text-black">
       <Header />
       <div className="p-4 sm:p-6 lg:p-4">
-        <div className="bg-blue-900 text-white p-6 rounded-3xl shadow-lg">
+        <div className="bg-[#2A3175] text-white p-6 rounded-3xl shadow-lg">
           <h2 className="text-2xl font-bold mb-6">Traffic Analysis</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div>
+            <div className="col-span-1 sm:col-span-2 lg:col-span-1">
               <AnalyticsCounter
                 title="Visitors Count"
                 value={visitorsData.visitors}
@@ -182,7 +182,7 @@ const Dashboard = () => {
                 icon={<People style={{ fontSize: 72, color: "#6E85B7" }} />} // Light blue icon color
               />
             </div>
-            <div>
+            <div className="col-span-1 sm:col-span-1 lg:col-span-1">
               <AnalyticsCounter
                 title="Male"
                 value={visitorsData.Male}
@@ -190,7 +190,7 @@ const Dashboard = () => {
                 icon={<Male style={{ fontSize: 72, color: "#6E85B7" }} />} // Light blue icon color
               />
             </div>
-            <div>
+            <div className="col-span-1 sm:col-span-1 lg:col-span-1">
               <AnalyticsCounter
                 title="Female"
                 value={visitorsData.Female}
@@ -202,7 +202,7 @@ const Dashboard = () => {
         </div>
 
         {/* Zoning Analysis Section */}
-        <div className="bg-blue-400 text-white p-6 rounded-3xl shadow-lg my-6">
+        <div className="bg-[#5993CE] text-white p-6 rounded-3xl shadow-lg my-6">
           <h2 className="text-2xl font-bold mb-6">Zoning Analysis</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {zones.map((zone, index) => (
@@ -230,7 +230,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-blue-200 text-black p-6 rounded-3xl shadow-lg">
+        <div className="bg-[#9FBEDE] text-black p-6 rounded-3xl shadow-lg">
           <h2 className="text-2xl font-bold text-white mb-6">
             Customer Journey
           </h2>
@@ -416,7 +416,7 @@ const Dashboard = () => {
 
           <div className="flex justify-end mt-4">
             <button
-              className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+              className="bg-blue-900 text-white py-2 px-4 rounded-lg"
               onClick={handleClose}
             >
               Close
