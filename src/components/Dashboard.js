@@ -171,90 +171,98 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-100 text-black">
       <Header />
       <div className="p-4 sm:p-6 lg:p-4">
-        {/* Analytics Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
-            <AnalyticsCounter
-              title="Visitors Count"
-              value={visitorsData.visitors}
-              subTitle="จำนวนคนเข้างาน"
-              icon={<People style={{ fontSize: 72 }} />}
-            />
-          </div>
-          <div className="col-span-1 sm:col-span-1 lg:col-span-1">
-            <AnalyticsCounter
-              title="Male"
-              value={visitorsData.Male}
-              subTitle="ผู้ชาย"
-              icon={<Male style={{ fontSize: 72 }} />}
-            />
-          </div>
-          <div className="col-span-1 sm:col-span-1 lg:col-span-1">
-            <AnalyticsCounter
-              title="Female"
-              value={visitorsData.Female}
-              subTitle="ผู้หญิง"
-              icon={<Female style={{ fontSize: 72 }} />}
-            />
-          </div>
-        </div>
-
-        {/* Customer Journey Section */}
-        <div className="text-2xl font-bold mb-4">Customer Journey</div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {journeyData.map((journey, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-lg p-4 sm:p-6 lg:p-8 rounded-xl"
-            >
-              <div className="text-sm sm:text-2xl font-semibold">
-                {journey.journey_name
-                  .replace(/_/g, " ")
-                  .replace(/\bto\b/g, ">")
-                  .replace(
-                    /\w+/g,
-                    (txt) =>
-                      txt.charAt(0).toUpperCase() + txt.slice(1) + " Zone"
-                  )}
-              </div>
-
-              <div className="flex justify-end mt-14">
-                <div className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-800">
-                  {journey.journey_counts}
-                </div>
-              </div>
+        <div className="bg-blue-900 text-white p-6 rounded-3xl shadow-lg">
+          <h2 className="text-2xl font-bold mb-6">Traffic Analysis</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+              <AnalyticsCounter
+                title="Visitors Count"
+                value={visitorsData.visitors}
+                subTitle="จำนวนคนเข้างาน"
+                icon={<People style={{ fontSize: 72, color: "#6E85B7" }} />} // Light blue icon color
+              />
             </div>
-          ))}
+            <div>
+              <AnalyticsCounter
+                title="Male"
+                value={visitorsData.Male}
+                subTitle="ผู้ชาย"
+                icon={<Male style={{ fontSize: 72, color: "#6E85B7" }} />} // Light blue icon color
+              />
+            </div>
+            <div>
+              <AnalyticsCounter
+                title="Female"
+                value={visitorsData.Female}
+                subTitle="ผู้หญิง"
+                icon={<Female style={{ fontSize: 72, color: "#6E85B7" }} />} // Light blue icon color
+              />
+            </div>
+          </div>
         </div>
 
         {/* Zoning Analysis Section */}
-        <div className="text-2xl font-bold mb-4">Zoning Analysis</div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {zones.map((zone, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-lg p-4 sm:p-6 lg:p-8 rounded-lg text-center cursor-pointer"
-              onClick={() => handleOpen(zone)}
-            >
-              <div className="text-4xl sm:text-5xl text-blue-400 mb-2">
-                {React.cloneElement(iconMap[zone.zone_name], {
-                  style: { fontSize: "64px" },
-                })}
+        <div className="bg-blue-400 text-white p-6 rounded-3xl shadow-lg my-6">
+          <h2 className="text-2xl font-bold mb-6">Zoning Analysis</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {zones.map((zone, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8 text-center cursor-pointer"
+                onClick={() => handleOpen(zone)}
+              >
+                <div className="text-4xl sm:text-5xl text-blue-400 mb-2">
+                  {React.cloneElement(iconMap[zone.zone_name], {
+                    style: { fontSize: "64px" },
+                  })}
+                </div>
+                <div className="text-sm sm:text-lg font-semibold text-black">
+                  {zone.zone_name
+                    .replace(/_/g, " ")
+                    .replace(
+                      /\w\S*/g,
+                      (txt) =>
+                        txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+                    )}{" "}
+                </div>
               </div>
-              <div className="text-sm sm:text-lg font-semibold">
-                {zone.zone_name
-                  .replace(/_/g, " ") // Replace underscores with spaces
-                  .replace(
-                    /\w\S*/g,
-                    (txt) =>
-                      txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
-                  )}{" "}
-                {/* Capitalize the first letter of each word */}
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-blue-200 text-black p-6 rounded-3xl shadow-lg">
+          <h2 className="text-2xl font-bold text-white mb-6">
+            Customer Journey
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {journeyData.map((journey, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-lg p-4 sm:p-6 lg:p-8 rounded-xl"
+              >
+                <div className="text-sm sm:text-2xl font-semibold">
+                  {journey.journey_name
+                    .replace(/_/g, " ")
+                    .replace(/\bto\b/g, ">")
+                    .replace(
+                      /\w+/g,
+                      (txt) =>
+                        txt.charAt(0).toUpperCase() + txt.slice(1) + " Zone"
+                    )}
+                </div>
+
+                <div className="flex justify-end mt-14">
+                  <div className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-800">
+                    {journey.journey_counts}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Customer Journey Section */}
 
       {/* Modal for showing zone details */}
       <Modal
