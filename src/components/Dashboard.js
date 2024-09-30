@@ -45,11 +45,11 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://ff74-171-96-75-214.ngrok-free.app/get_zone_data",
+          "https://0590-171-96-73-86.ngrok-free.app/get_zone_data",
           {
             headers: {
               "Content-Type": "application/json",
-              "ngrok-skip-browser-warning": "true",
+              "ngrok-skip-browser-warning": "false",
             },
           }
         );
@@ -75,7 +75,7 @@ const Dashboard = () => {
     return <div>Loading...</div>; // Show loading state while waiting for data
   }
 
-  const visitorsData = data.zone_visiting[0]; // Adjust to fit API response structure
+  const visitorsData = data.zone_visiting[0];
   const journeyData = data.customer_journey;
   const zones = data.zone;
 
@@ -93,7 +93,7 @@ const Dashboard = () => {
     flow_zone: <FamilyRestroomIcon />, // Flow Zone -> Map icon
     fun_zone: <InterestsIcon />, // Fun Zone -> Sports Esports icon
     fantastic_zone: <AutoAwesomeIcon />, // Fantastic Zone -> Star icon
-    networking_zone: <Diversity2Icon />, // Networking Zone -> Network Check icon
+    register_zone: <Diversity2Icon />, // Networking Zone -> Network Check icon
   };
 
   // Chart data generation for each booth
@@ -294,7 +294,8 @@ const Dashboard = () => {
                   /\w\S*/g,
                   (txt) =>
                     txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
-                )}{""}
+                )}
+              {""}
             </div>
           )}
           {selectedZone && (
@@ -340,7 +341,7 @@ const Dashboard = () => {
                         {booth.current_to_target}
                       </div>
                       <div className="text-sm font-bold">
-                        {booth.booth_name === "expopass"
+                        {booth.booth_name === "Register"
                           ? "Out to Fun Zone"
                           : booth.booth_name === "logicspace"
                           ? "Out to THAIRUN Booth"
@@ -350,13 +351,13 @@ const Dashboard = () => {
                           ? "Out to PRO-toys Booth"
                           : booth.booth_name === "protoys"
                           ? "Out to Baksters Booth"
-                          : booth.booth_name === "marketing"
-                          ? "Out to Flow Zone"
+                          : booth.booth_name === "ExpoPass/Graffity"
+                          ? "Out to Register Zone"
                           : ""}
                       </div>
 
                       <div className="text-xs text-gray-500">
-                        {booth.booth_name === "expopass"
+                        {booth.booth_name === "Register"
                           ? "ไป Fun Zone"
                           : booth.booth_name === "logicspace"
                           ? "ไป THAIRUN บูธ"
@@ -366,8 +367,8 @@ const Dashboard = () => {
                           ? "ไป PRO-toys บูธ"
                           : booth.booth_name === "protoys"
                           ? "ไป Baksters บูธ"
-                          : booth.booth_name === "marketing"
-                          ? "ไป Flow โซน"
+                          : booth.booth_name === "ExpoPass/Graffity"
+                          ? "ไป Register โซน"
                           : ""}
                       </div>
                     </div>
@@ -376,32 +377,32 @@ const Dashboard = () => {
                         {booth.out_of_target}
                       </div>
                       <div className="text-sm font-bold">
-                        {booth.booth_name === "expopass"
-                          ? "Out to Networking Zone"
+                        {booth.booth_name === "Register"
+                          ? "Out to Flow Zone"
                           : booth.booth_name === "logicspace"
-                          ? "Out to Flow Zone"
+                          ? "Out to Register Zone"
                           : booth.booth_name === "thairun"
-                          ? "Out to Flow Zone"
+                          ? "Out to Register Zone"
                           : booth.booth_name === "baksters"
-                          ? "Out to Networking Zone"
+                          ? "Out to Flow Zone"
                           : booth.booth_name === "protoys"
-                          ? "Out to Networking Zone"
-                          : booth.booth_name === "marketing"
+                          ? "Out to Flow Zone"
+                          : booth.booth_name === "ExpoPass/Graffity"
                           ? "Out to Fantastic Zone"
                           : ""}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {booth.booth_name === "expopass"
-                          ? "ไป Networking Zone"
+                        {booth.booth_name === "Register"
+                          ? "ไป Flow Zone"
                           : booth.booth_name === "logicspace"
-                          ? "ไป Flow โซน"
+                          ? "ไป Register โซน"
                           : booth.booth_name === "thairun"
-                          ? "ไป Flow โซน"
+                          ? "ไป Register โซน"
                           : booth.booth_name === "baksters"
-                          ? "ไป Networking โซน"
+                          ? "ไป Flow โซน"
                           : booth.booth_name === "protoys"
-                          ? "ไป Networking โซน"
-                          : booth.booth_name === "marketing"
+                          ? "ไป Flow โซน"
+                          : booth.booth_name === "ExpoPass/Graffity"
                           ? "ไป Fantastic โซน"
                           : ""}
                       </div>
